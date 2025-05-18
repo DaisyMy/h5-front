@@ -1,0 +1,6 @@
+/* tailwind 基础指令组件 */
+/* @tailwind base;
+@tailwind components;
+@tailwind utilities; */
+
+@import 'tailwindcss'
