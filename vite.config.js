@@ -1,18 +1,29 @@
 import { defineConfig, loadEnv } from 'vite';
-import { join } from 'path';
+import path from 'path';
 import vue from '@vitejs/plugin-vue';
 import tailwindcss from '@tailwindcss/vite';
 import AutoImport from 'unplugin-auto-import/vite';
+import svgLoader from 'vite-svg-loader';
+import { createSvgIconsPlugin } from 'vite-plugin-svg-icons';
 
 // https://vite.dev/config/
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd());
-  console.log('EVN:', env);
+  console.log('EVN:', mode, env, process.cwd());
   return {
-    plugins: [vue(), tailwindcss(), AutoImport({ imports: ['vue', 'vue-router'] })],
+    plugins: [
+      vue(),
+      tailwindcss(),
+      svgLoader(),
+      AutoImport({ imports: ['vue', 'vue-router'] }),
+      createSvgIconsPlugin({
+        iconDirs: [path.resolve(process.cwd(), 'src/assets/icons')],
+        symbolId: 'icon-[name]',
+      }),
+    ],
     resolve: {
       alias: {
-        '@': join(__dirname, './src'),
+        '@': path.join(__dirname, './src'),
       },
     },
     server: {
