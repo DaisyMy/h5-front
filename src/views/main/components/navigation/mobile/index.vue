@@ -9,12 +9,16 @@
                 class=" shrink-0 px-1.5 py-0.5 z-10 duration-200 last:mr-4" :ref="setItemRef"
                 @click="handleItemClick(index)">{{ item.name }}</li>
         </ul>
-        <daisy-popup v-model="isOpenPopup">测试</daisy-popup>
+        <daisy-popup v-model="isOpenPopup">
+            <menu-vue :cagegorys="data" @onItemClick="handleItemClick"></menu-vue>
+        </daisy-popup>
     </div>
 </template>
 
 <script setup>
 import { useScroll } from '@vueuse/core';
+
+import menuVue from '../../menu/index.vue'
 
 const props = defineProps({
     data: {
@@ -39,10 +43,9 @@ const setItemRef = (el) => {
     }
 }
 
-
-
 const handleItemClick = (index) => {
     currentCategoryIndex.value = index
+    isOpenPopup.value && (isOpenPopup.value = false)
 }
 
 const { x: ulScrollLeft } = useScroll(ulTarget)
