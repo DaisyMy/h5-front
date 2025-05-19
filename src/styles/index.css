@@ -17,8 +17,13 @@
     --text-xl: 0.65rem;
     --text-xl--line-height:0.75rem;
 
-    --shadow-l-white:'-10px 0 10px white';
+    --shadow-l-white:-10px 0 10px white;
 
     --h-header:72px;
     --h-main:calc(100vh - var(--h-header));
+
+    --color-main:#f44c58;
+    --color-main-hover:#f32836;
+    /* --bg-main:#f44c58;
+    --bg-main-hover:#f32836; */
 }
