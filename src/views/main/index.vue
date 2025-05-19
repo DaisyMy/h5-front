@@ -1,7 +1,6 @@
 <template>
     <div>
         <navigation-vue></navigation-vue>
-        home
     </div>
 </template>
 
