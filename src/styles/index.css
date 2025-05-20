@@ -1,11 +1,11 @@
 /* tailwind 基础指令组件 */
-/* @tailwind base;
+@tailwind base;
 @tailwind components;
-@tailwind utilities; */
+@tailwind utilities;
 
-@import 'tailwindcss';
+/* @import 'tailwindcss'; */
 
-@theme {
+/* @theme {
     --text-xs: 0.25rem;
     --text-xs--line-height:0.35rem;
     --text-sm: 0.35rem;
@@ -24,6 +24,6 @@
 
     --color-main:#f44c58;
     --color-main-hover:#f32836;
-    /* --bg-main:#f44c58;
-    --bg-main-hover:#f32836; */
-}
+    --bg-main:#f44c58;
+    --bg-main-hover:#f32836;
+} */

@@ -1,7 +1,6 @@
 import { defineConfig, loadEnv } from 'vite';
 import path from 'path';
 import vue from '@vitejs/plugin-vue';
-import tailwindcss from '@tailwindcss/vite';
 import AutoImport from 'unplugin-auto-import/vite';
 import svgLoader from 'vite-svg-loader';
 import { createSvgIconsPlugin } from 'vite-plugin-svg-icons';
@@ -13,7 +12,6 @@ export default defineConfig(({ mode }) => {
   return {
     plugins: [
       vue(),
-      tailwindcss(),
       svgLoader(),
       AutoImport({ imports: ['vue', 'vue-router'] }),
       createSvgIconsPlugin({
