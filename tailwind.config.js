@@ -11,6 +11,18 @@ module.exports = {
         lg: ['0.55rem', '0.65rem'],
         xl: ['0.65rem', '0.75rem'],
       },
+      height: {
+        header: '72px',
+        main: 'calc(100vh - 72px)',
+      },
+      boxShadow: {
+        'l-white': '-10px 0 10px white',
+        'l-zinc': '-10px 0 10px #18181b',
+      },
+      colors: {
+        main: '#f44c58',
+        'hover-main': '#f32836',
+      },
     },
   },
 };
