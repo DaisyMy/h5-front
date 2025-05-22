@@ -1,5 +1,5 @@
 import { createApp } from 'vue';
-import { createPinia } from 'pinia';
+import store from '@/store';
 import router from '@/router';
 import 'virtual:svg-icons-register'
 
@@ -12,7 +12,7 @@ import { useREm } from '@/utils/flexible.js';
 
 const app = createApp(App);
 
-app.use(mLibs).use(createPinia()).use(router);
+app.use(mLibs).use(store).use(router);
 
 app.mount('#app');
 
