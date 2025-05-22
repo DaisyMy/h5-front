@@ -1,5 +1,5 @@
 <template>
-    <div class="h-screen">
+    <div class="h-screen dark:bg-zinc-800">
         <header-vue class="h-header"></header-vue>
         <main-vue class="h-main"></main-vue>
         <floating-vue></floating-vue>

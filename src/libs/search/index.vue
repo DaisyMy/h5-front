@@ -6,14 +6,14 @@
                 color="#707070"></daisy-svg-icon>
             <!-- 输入框 -->
             <input
-                class=" block w-full h-[44px] pl-4 text-sm outline-0 bg-zinc-100 caret-zinc-400 rounded-xl text-zinc-900 tracking-wide font-semibold border border-zinc-100 duration-500 group-hover:bg-white group-hover:border-zinc-200 focus:border-red-300"
+                class="dark:bg-zinc-800 dark:text-zinc-200 dark:border-zinc-700 dark:group-hover:bg-zinc-900 dark:group-hover:border-zinc-700 block w-full h-[44px] pl-4 text-sm outline-0 bg-zinc-100 caret-zinc-400 rounded-xl text-zinc-900 tracking-wide font-semibold border border-zinc-100 duration-500 group-hover:bg-white group-hover:border-zinc-200 focus:border-red-300"
                 type="text" placeholder="搜索" v-model="inputValue" @focus="onFocusHandler" @blur="onBlurHandler" />
             <!-- 清空icon -->
             <daisy-svg-icon v-show="inputValue" @click="handleClear" name="input-delete"
-                class=" h-1.5 w-1.5 absolute translate-y-[-50%] top-[50%] right-9 duration-500 cursor-pointer"></daisy-svg-icon>
+                class=" h-1.5 w-1.5 absolute translate-y-[-50%] top-[50%] right-9 duration-500 cursor-pointer" fillClass="dark:fill-zinc-300"></daisy-svg-icon>
             <!-- 分割线 -->
             <div
-                class=" opacity-0 h-1.5 w-[1px] absolute translate-y-[-50%] top-[50%] right-[62px] duration-500 bg-zinc-200 group-hover:opacity-100">
+                class=" opacity-0 h-1.5 w-[1px] absolute translate-y-[-50%] top-[50%] right-[62px] duration-500 bg-zinc-200 group-hover:opacity-100 dark:bg-zinc-700">
             </div>
             <!-- 搜索btn -->
             <daisy-button @click="handleSearch"
@@ -23,7 +23,7 @@
         <!-- 下拉 -->
         <transition name="slide">
             <div v-if="$slots.dropdown" v-show="isFocus"
-                class=" max-h-[368px] w-full text-base overflow-auto bg-white absolute z-20 left-0 top-[56px] p-2 rounded border border-zinc-200 hover:shadow-3xl">
+                class="dark:bg-zinc-800 dark:border-zinc-600 max-h-[368px] w-full text-base overflow-auto bg-white absolute z-20 left-0 top-[56px] p-2 rounded border border-zinc-200 hover:shadow-3xl">
                 <slot name="dropdown"></slot>
             </div>
         </transition>

@@ -5,7 +5,8 @@
         </div>
         <transition name="slide">
             <div ref="contentTarget" v-show="isVisable && $slots.default && $slots.default().length > 0"
-                :style="contentStyle" class=" absolute p-1 z-20 bg-white border rounded-md">
+                :style="contentStyle"
+                class="dark:bg-zinc-900 dark:border-zinc-700 absolute p-1 z-20 bg-white border rounded-md">
                 <slot></slot>
             </div>
         </transition>

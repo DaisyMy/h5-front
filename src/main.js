@@ -9,6 +9,7 @@ import '@/styles/index.css';
 
 import mLibs from './libs';
 import { useREm } from '@/utils/flexible.js';
+import useTheme from '@/utils/theme.js';
 
 const app = createApp(App);
 
@@ -17,3 +18,4 @@ app.use(mLibs).use(store).use(router);
 app.mount('#app');
 
 useREm();
+useTheme();
