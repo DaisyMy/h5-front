@@ -4,7 +4,7 @@
     <template #reference>
       <daisy-svg-icon name="theme-light"
         class=" guide-theme w-4 h-4 p-1 cursor-pointer rounded-sm duration-200 outline-none hover:bg-zinc-100/60"
-        fillCalss="fill-zinc-900"></daisy-svg-icon>
+        fillClass="fill-zinc-900"></daisy-svg-icon>
     </template>
     <div class="w-[140px] overflow-hidden">
       <div class="flex items-center p-1 cursor-pointer rounded hover:bg-zinc-100/60" v-for="item in themeList"

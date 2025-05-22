@@ -1,7 +1,7 @@
 <template>
     <div class="h-screen">
-        <header-vue class=" h-(--h-header)"></header-vue>
-        <main-vue class="h-(--h-main)"></main-vue>
+        <header-vue class="h-header"></header-vue>
+        <main-vue class="h-main"></main-vue>
         <floating-vue></floating-vue>
     </div>
 </template>

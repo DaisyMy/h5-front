@@ -1,10 +1,12 @@
 import { defineStore } from 'pinia';
 import { getCategory } from '@/api/category.js';
-import { ALL_CATEGORY_ITEM } from '@/constants';
+import { ALL_CATEGORY_ITEM, CATECORY_NOMAR_DATE } from '@/constants';
 
 const categoryStory = defineStore('category', {
+  // 开启持久化
+  persist: true,
   state: () => ({
-    categorys: [],
+    categorys: CATECORY_NOMAR_DATE,
   }),
   getters: {
     categoryList: (state) => state.categorys,
