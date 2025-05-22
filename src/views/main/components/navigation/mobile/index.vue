@@ -6,28 +6,25 @@
                 <daisy-svg-icon class=" w-1.5 h-1.5" name="hamburger" @click="isOpenPopup = !isOpenPopup"></daisy-svg-icon>
             </li>
             <li ref="sliderTarget" class=" absolute h-[22px] bg-zinc-900 rounded-lg duration-200" :style="sliderStyle"></li>
-            <li v-for="(item, index) in data" :key="item.id" :class="{ 'text-zinc-100': currentCategoryIndex === index }"
+            <li v-for="(item, index) in categoryStore.categoryList" :key="item.id"
+                :class="{ 'text-zinc-100': currentCategoryIndex === index }"
                 class=" shrink-0 px-1.5 py-0.5 z-10 duration-200 last:mr-4" :ref="setItemRef"
                 @click="handleItemClick(index)">{{ item.name }}</li>
         </ul>
         <daisy-popup v-model="isOpenPopup">
-            <menu-vue :cagegorys="data" @onItemClick="handleItemClick" :currentIndex="currentCategoryIndex"></menu-vue>
+            <menu-vue :cagegorys="categoryStore.categoryList" @onItemClick="handleItemClick"
+                :currentIndex="currentCategoryIndex"></menu-vue>
         </daisy-popup>
     </div>
 </template>
 
 <script setup>
 import { useScroll } from '@vueuse/core';
+import usecategoryStore from '@/store/modules/category'
 
 import menuVue from '../../menu/index.vue'
 
-const props = defineProps({
-    data: {
-        type: Array,
-        required: true
-    }
-})
-
+const categoryStore = usecategoryStore()
 let itemRefs = []
 
 const isOpenPopup = ref(false)

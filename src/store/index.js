@@ -1,12 +1,5 @@
 import { createPinia } from 'pinia';
-import category from './modules/category';
-import getters from './getters';
 
-const store = createPinia({
-  getters,
-  modules: {
-    category,
-  },
-});
+const store = createPinia();
 
 export default store;

@@ -1,19 +1,15 @@
 <template>
-      <mobile-navigation-vue v-if="isMobileTerminal" :data="categorysData"></mobile-navigation-vue>
+      <mobile-navigation-vue v-if="isMobileTerminal"></mobile-navigation-vue>
 </template>
 
 <script setup>
 import mobileNavigationVue from './mobile/index.vue'
 
-import { ALL_CATEGORY_ITEM } from '@/constants/index.js'
 import { isMobileTerminal } from '@/utils/flexible'
-import { getCategory } from '@/api/category'
+import useCategroyStore from '@/store/modules/category'
 
-const categorysData = ref([])
+const categroyStore = useCategroyStore()
 
-const getCategoryData = async () => {
-      const { categorys } = await getCategory()
-      categorysData.value = [ALL_CATEGORY_ITEM, ...categorys]
-}
-getCategoryData()
+categroyStore.useCategoryData()
+
 </script>
