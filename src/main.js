@@ -13,7 +13,7 @@ import useTheme from '@/utils/theme.js';
 
 const app = createApp(App);
 
-app.use(mLibs).use(store).use(router);
+app.use(store).use(router).use(mLibs);
 
 app.mount('#app');
 

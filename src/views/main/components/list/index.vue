@@ -1,6 +1,10 @@
 <template>
     <div>
-        <item-vue v-for="item in pexelsList" :key="item.id" :data="item"></item-vue>
+        <daisy-waterfall :data="pexelsList">
+            <template v-slot="scope">
+                <item-vue :data="scope.item"></item-vue>
+            </template>
+        </daisy-waterfall>
     </div>
 </template>
 <script setup >
