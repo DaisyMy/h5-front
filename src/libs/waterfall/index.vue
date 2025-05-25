@@ -12,6 +12,9 @@
     </div>
 </template>
 <script setup >
+import { nextTick } from 'vue';
+import { getImgElements, getAllImg, onComplateImgs, getMinHeightColumn, getMinHeight, getMaxHeight } from './utils'
+import { get } from '@vueuse/core';
 const props = defineProps({
     data: {
         type: Array,
@@ -69,6 +72,86 @@ const useColumnWidth = () => {
 
 onMounted(() => {
     useColumnWidth()
-    console.log(columnWidth.value);
+    console.log('columnWidth', columnWidth.value);
 })
+
+let itemHeights = []
+
+const waitImgComplate = () => {
+    itemHeights = []
+    let itemElements = [...document.getElementsByClassName('m-waterfall-item')]
+    const imgElements = getImgElements(itemElements)
+    const allImgs = getAllImg(imgElements)
+    onComplateImgs(allImgs).then(() => {
+        itemElements.forEach(el => {
+            itemHeights.push(el.offsetHeight)
+        })
+        useItemLocation()
+    })
+}
+
+const useItemHeight = () => {
+    itemHeights = []
+    let itemElements = [...document.getElementsByClassName('m-waterfall-item')]
+    itemElements.forEach(el => {
+        itemHeights.push(el.offsetHeight)
+    })
+    useItemLocation()
+}
+const getItemLeft = () => {
+    const column = getMinHeightColumn(columnHeightObj.value)
+    const left = column * (columnWidth.value + props.columnSpacing) + containerLeft.value
+    console.log('left', left);
+    return left
+}
+
+const getItemTop = () => {
+    return getMinHeight(columnHeightObj.value)
+}
+
+const increasingHeight = (index) => {
+    const minHeightColumn = getMinHeightColumn(columnHeightObj.value)
+    columnHeightObj.value[minHeightColumn] += itemHeights[index] + props.rowSpacing
+}
+
+const useItemLocation = () => {
+    console.log('itemHeights', itemHeights);
+    props.data.forEach((item, index) => {
+        if (item._style) return
+        item._style = {}
+        console.log(getItemLeft(),getItemTop());
+        item._seyle.left = getItemLeft()
+        item._style.top = getItemTop()
+        // 指定列高度自增
+        increasingHeight(index)
+    })
+
+    containerHeight.value = getMaxHeight(columnHeightObj.value)
+}
+
+
+
+watch(() => props.data, (newVal) => {
+    const resetColumnHeight = newVal.every(item => !item._style)
+    if (resetColumnHeight) {
+        useColumnHeightObj()
+    }
+    nextTick(() => {
+        if (props.picturePreReading) {
+            waitImgComplate()
+        } else {
+            useItemHeight()
+        }
+    })
+}, {
+    deep: true,
+    immediate: true
+})
+
+onUnmounted(() => {
+    props.data.forEach(item => {
+        delete item._style
+    })
+})
+
 </script>
