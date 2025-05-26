@@ -12,9 +12,7 @@
     </div>
 </template>
 <script setup >
-import { nextTick } from 'vue';
 import { getImgElements, getAllImg, onComplateImgs, getMinHeightColumn, getMinHeight, getMaxHeight } from './utils'
-import { get } from '@vueuse/core';
 const props = defineProps({
     data: {
         type: Array,
@@ -72,7 +70,6 @@ const useColumnWidth = () => {
 
 onMounted(() => {
     useColumnWidth()
-    console.log('columnWidth', columnWidth.value);
 })
 
 let itemHeights = []
@@ -94,6 +91,7 @@ const useItemHeight = () => {
     itemHeights = []
     let itemElements = [...document.getElementsByClassName('m-waterfall-item')]
     itemElements.forEach(el => {
+        console.log('offsetHeight',el.offsetHeight);
         itemHeights.push(el.offsetHeight)
     })
     useItemLocation()
@@ -101,7 +99,6 @@ const useItemHeight = () => {
 const getItemLeft = () => {
     const column = getMinHeightColumn(columnHeightObj.value)
     const left = column * (columnWidth.value + props.columnSpacing) + containerLeft.value
-    console.log('left', left);
     return left
 }
 
@@ -115,7 +112,6 @@ const increasingHeight = (index) => {
 }
 
 const useItemLocation = () => {
-    console.log('itemHeights', itemHeights);
     props.data.forEach((item, index) => {
         if (item._style) return
         item._style = {}
@@ -124,11 +120,14 @@ const useItemLocation = () => {
         // 指定列高度自增
         increasingHeight(index)
     })
-
     containerHeight.value = getMaxHeight(columnHeightObj.value)
 }
 
-
+onUnmounted(() => {
+    props.data.forEach(item => {
+        delete item._style
+    })
+})
 
 watch(() => props.data, (newVal) => {
     const resetColumnHeight = newVal.every(item => !item._style)
@@ -136,9 +135,12 @@ watch(() => props.data, (newVal) => {
         useColumnHeightObj()
     }
     nextTick(() => {
+        console.log('picturePreReading',props.picturePreReading);
         if (props.picturePreReading) {
+            console.log('@@@1');
             waitImgComplate()
         } else {
+            console.log('@@@2');
             useItemHeight()
         }
     })
@@ -147,10 +149,26 @@ watch(() => props.data, (newVal) => {
     immediate: true
 })
 
-onUnmounted(() => {
-    props.data.forEach(item => {
-        delete item._style
-    })
+const reset = () => {
+    setTimeout(() => {
+        console.log('setTimeout');
+        useColumnWidth()
+        props.data.forEach(item => {
+            item._style = null
+        })
+    }, 1000)
+}
+
+watch(() => props.column, () => {
+    if (props.picturePreReading) {
+        columnWidth.value = 0
+        nextTick(()=>{
+            console.log('next');
+            reset()
+        })
+    } else {
+        reset()
+    }
 })
 
 </script>

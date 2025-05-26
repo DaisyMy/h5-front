@@ -7,7 +7,10 @@ const { width } = useWindowSize();
  * 判断当前设备是否为移动设备
  */
 export const isMobileTerminal = computed(() => {
-  return width.value < PC_DEVICE_WINTH;
+  return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+    navigator.userAgent
+  )
+  // return width.value < PC_DEVICE_WINTH;
 });
 
 /**
