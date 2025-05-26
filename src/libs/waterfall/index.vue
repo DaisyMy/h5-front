@@ -119,8 +119,7 @@ const useItemLocation = () => {
     props.data.forEach((item, index) => {
         if (item._style) return
         item._style = {}
-        console.log(getItemLeft(),getItemTop());
-        item._seyle.left = getItemLeft()
+        item._style.left = getItemLeft()
         item._style.top = getItemTop()
         // 指定列高度自增
         increasingHeight(index)
