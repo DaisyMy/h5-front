@@ -90,7 +90,6 @@ const useItemHeight = () => {
     itemHeights = []
     let itemElements = [...document.getElementsByClassName('m-waterfall-item')]
     itemElements.forEach(el => {
-        console.log('offsetHeight',el.offsetHeight);
         itemHeights.push(el.offsetHeight)
     })
     useItemLocation()
@@ -134,13 +133,9 @@ watch(() => props.data, (newVal) => {
         useColumnHeightObj()
     }
     nextTick(() => {
-        console.log('picturePreReading',props.picturePreReading);
         if (props.picturePreReading) {
-            console.log('@@@1');
             waitImgComplate()
         } else {
-            console.log('@@@2');
-            // waitImgComplate()
             useItemHeight()
         }
     })
@@ -151,7 +146,6 @@ watch(() => props.data, (newVal) => {
 
 const reset = () => {
     setTimeout(() => {
-        console.log('setTimeout');
         useColumnWidth()
         props.data.forEach(item => {
             item._style = null
@@ -163,7 +157,6 @@ watch(() => props.column, () => {
     if (props.picturePreReading) {
         columnWidth.value = 0
         nextTick(()=>{
-            console.log('next');
             reset()
         })
     } else {
