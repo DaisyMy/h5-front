@@ -141,6 +141,7 @@ watch(() => props.data, (newVal) => {
             waitImgComplate()
         } else {
             console.log('@@@2');
+            // waitImgComplate()
             useItemHeight()
         }
     })
