@@ -25,9 +25,7 @@ const isFinished = ref(false)
 const pexelsList = ref([])
 const getPexelsData = async () => {
     if (isFinished.value) return
-    if (pexelsList.value.length) {
-        query.page++
-    }
+
     const res = await getPexelsList(query)
     if (query.page === 1) {
         pexelsList.value = res.list
@@ -36,9 +34,10 @@ const getPexelsData = async () => {
     }
     if (pexelsList.value.length === res.total) {
         isFinished.value = true
+    } else {
+        pexelsList.value.length && query.page++
     }
     isLoading.value = false
 }
-getPexelsData()
 </script>
 

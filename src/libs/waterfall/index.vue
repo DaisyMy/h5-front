@@ -8,7 +8,6 @@
                 <slot :item="item" :width="columnWidth" :index="index"> </slot>
             </div>
         </template>
-        <div v-else>加载中……</div>
     </div>
 </template>
 <script setup >
