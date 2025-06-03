@@ -15,6 +15,9 @@ import { getPexelsList } from '@/api/pexels';
 import { isMobileTerminal } from '@/utils/flexible'
 import itemVue from './item.vue';
 
+import useAppStore from '@/store/modules/app';
+
+const appStore = useAppStore()
 
 let query = {
     page: 1,
@@ -39,5 +42,18 @@ const getPexelsData = async () => {
     }
     isLoading.value = false
 }
+
+const resetQuery = (newQuery) => {
+    query = { ...query, ...newQuery }
+    isFinished.value = false
+    pexelsList.value = []
+}
+
+watch(() => appStore.currentCategory, (currentCategory) => {
+    resetQuery({
+        page: 1,
+        categoryId: currentCategory.id
+    })
+})
 </script>
 

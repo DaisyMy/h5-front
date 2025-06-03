@@ -10,7 +10,7 @@
             <li v-for="(item, index) in categoryStore.categoryList" :key="item.id"
                 :class="{ 'text-zinc-100': currentCategoryIndex === index }"
                 class=" shrink-0 px-1.5 py-0.5 z-10 duration-200 last:mr-4" :ref="setItemRef"
-                @click="handleItemClick(index)">{{ item.name }}</li>
+                @click="handleItemClick(item, index)">{{ item.name }}</li>
         </ul>
         <daisy-popup v-model="isOpenPopup">
             <menu-vue :cagegorys="categoryStore.categoryList" @onItemClick="handleItemClick"
@@ -22,10 +22,12 @@
 <script setup>
 import { useScroll } from '@vueuse/core';
 import usecategoryStore from '@/store/modules/category'
+import useAppStore from '@/store/modules/app'
 
 import menuVue from '../../menu/index.vue'
 
 const categoryStore = usecategoryStore()
+const appStore = useAppStore()
 let itemRefs = []
 
 const isOpenPopup = ref(false)
@@ -55,8 +57,9 @@ const sliderScroll = (index) => {
     }
 }
 
-const handleItemClick = (index) => {
+const handleItemClick = (item, index) => {
     currentCategoryIndex.value = index
+    appStore.changeCurrentCategory(item)
     isOpenPopup.value && (isOpenPopup.value = false)
     sliderScroll(index)
 }

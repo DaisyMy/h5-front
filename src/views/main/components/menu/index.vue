@@ -5,7 +5,7 @@
             <li v-for="(item, index) in cagegorys" :key="item.id"
                 class="text-lg  px-1 py-1.5 duration-100 active:bg-zinc-100 dark:text-zinc-300 active:dark:bg-zinc-900"
                 :class="{ 'text-amber-50 bg-gray-900': index === currentIndex, 'text-zinc-900': index !== currentIndex }"
-                @click="handleClick(index)">{{
+                @click="handleClick(item, index)">{{
                     item.name }}</li>
         </ul>
     </div>
@@ -27,8 +27,8 @@ const emits = defineEmits(['onItemClick'])
 
 const cagegoryList = ref(null)
 
-const handleClick = (index) => {
-    emits('onItemClick', index)
+const handleClick = (item, index) => {
+    emits('onItemClick', item, index)
 }
 
 const listScroll = () => {

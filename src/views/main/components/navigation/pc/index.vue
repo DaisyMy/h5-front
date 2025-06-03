@@ -8,7 +8,7 @@
             </li>
             <li v-for="(item, index) in useCategroyStore().categoryList" :key="item.id"
                 class="dark:text-zinc-500 dark:hover:text-zinc-300 dark:hover:bg-zinc-900 shrink-0 px-1 py-0 z-10 duration-200 last:mr-4 text-zinc-900 text-base font-bold h-4 leading-4 cursor-pointer hover:bg-zinc-200 rounded mr-1 mb-1"
-                :class="{ 'dark:text-zinc-500 dark:bg-zinc-900 text-zinc-900 bg-zinc-200': currentCategoryIndex === index }" @click="onItemCLick(index)">
+                :class="{ 'dark:text-zinc-500 dark:bg-zinc-900 text-zinc-900 bg-zinc-200': currentCategoryIndex === index }" @click="onItemClick(item,index)">
                 {{ item.name }}
             </li>
         </ul>
@@ -16,6 +16,9 @@
 </template>
 <script setup >
 import useCategroyStore from '@/store/modules/category'
+import useAppStore from '@/store/modules/app'
+
+const appStore = useAppStore()
 
 const isOpenCategory = ref(false)
 const triggerState = () => {
@@ -23,8 +26,9 @@ const triggerState = () => {
 }
 
 const currentCategoryIndex = ref(0)
-const onItemCLick = (index) => {
+const onItemClick = (item, index) => {
     currentCategoryIndex.value = index
+    appStore.changeCurrentCategory(item)
 }
 
 </script>
