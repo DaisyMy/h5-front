@@ -64,11 +64,12 @@ const inputValue = useVModel(props)
 const isFocus = ref(false)
 
 const handleClear = () => {
-    emits(EMIT_UPDATE_MODELVALUE, '')
+    inputValue.value = ''
+    emits(EMIT_CLEAR, '')
 }
 const handleSearch = () => {
     isFocus.value = false
-    emits(EMIT_SEARCH)
+    emits(EMIT_SEARCH, inputValue.value)
 }
 
 const onFocusHandler = () => {
@@ -83,6 +84,13 @@ const onBlurHandler = () => {
 const containerTarget = ref(null)
 onClickOutside(containerTarget, () => {
     isFocus.value = false
+})
+
+/**
+ * 监听输入行为
+ */
+ watch(inputValue, (val) => {
+  emits(EMIT_INPUT, val)
 })
 </script>
 <style lang="scss" scoped>

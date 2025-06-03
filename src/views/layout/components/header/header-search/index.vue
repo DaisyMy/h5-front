@@ -1,6 +1,6 @@
 <template>
   <div class=" w-full">
-    <daisy-search v-model="inputValue">
+    <daisy-search v-model="inputValue" @search="onSearchHandler" @clear="onSearchHandler">
       <template #dropdown>
         <div>
           <hint-vue :search-text="inputValue" v-show="inputValue" @itemClick="onSearchHandler"></hint-vue>

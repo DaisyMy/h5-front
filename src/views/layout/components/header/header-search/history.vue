@@ -2,7 +2,7 @@
     <div>
         <div class="flex items-center text-xs mb-1 text-zinc-400">
             <span>最近搜索</span>
-            <daisy-svg-icon name="delete" class=" size-2.5 ml-1 cursor-pointer duration-300 rounded-sm hover:bg-zinc-100"
+            <daisy-svg-icon name="delete" class=" size-1.5 ml-1 cursor-pointer duration-300 rounded-sm hover:bg-zinc-100"
                 fillClass="fill-zinc-400" @click="onDeleteAllClick"></daisy-svg-icon>
         </div>
 
