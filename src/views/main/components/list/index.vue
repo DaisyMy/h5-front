@@ -16,8 +16,10 @@ import { isMobileTerminal } from '@/utils/flexible'
 import itemVue from './item.vue';
 
 import useAppStore from '@/store/modules/app';
+import useSearchStore from '@/store/modules/search';
 
 const appStore = useAppStore()
+const searchStore = useSearchStore()
 
 let query = {
     page: 1,
@@ -53,6 +55,13 @@ watch(() => appStore.currentCategory, (currentCategory) => {
     resetQuery({
         page: 1,
         categoryId: currentCategory.id
+    })
+})
+
+watch(() => searchStore.searchText, (searchText) => {
+    resetQuery({
+        page: 1,
+        searchText
     })
 })
 </script>
