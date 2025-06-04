@@ -19,6 +19,7 @@
 </template>
 <script setup >
 import useSearchStore from '@/store/modules/search';
+import { confirm } from '@/libs';
 
 const searchStore = useSearchStore();
 

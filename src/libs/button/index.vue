@@ -15,6 +15,7 @@
 </template>
 <script setup >
 import { typeEnum, sizeEnum } from './Enum'
+import daisySvgIcon from '../svg-icon/index.vue'
 
 const props = defineProps({
     icon: {

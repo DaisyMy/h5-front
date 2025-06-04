@@ -12,7 +12,7 @@
                 <daisy-button class=" absolute top-1.5 right-1.5" type="info" icon="heart"
                     iconClass="fill-zinc-900 dark:fill-zinc-200" />
                 <daisy-button class=" absolute bottom-1.5 left-1.5 bg-zinc-100/70" type="info" size="small" icon="download"
-                    iconClass="fill-zinc-900 dark:fill-zinc-200" />
+                    iconClass="fill-zinc-900 dark:fill-zinc-200" @click.stop="onDownload" />
                 <daisy-button class=" absolute bottom-1.5 right-1.5 bg-zinc-100/70" type="info" size="small" icon="full"
                     iconClass="fill-zinc-900 dark:fill-zinc-200" />
             </div>
@@ -26,6 +26,7 @@
 </template>
 <script setup >
 import { randomRGB } from '@/utils/color'
+import { message } from '@/libs'
 const props = defineProps({
     data: {
         type: Object,
@@ -37,4 +38,7 @@ const props = defineProps({
     }
 })
 
+const onDownload = () => {
+    message('success', '图片开始下载')
+}
 </script>
