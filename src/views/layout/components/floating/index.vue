@@ -2,7 +2,7 @@
     <div class="fixed bottom-10 right-2">
         <div
             class=" guide-start size-4 mb-1 bg-white dark:bg-zinc-900 border dark:border-0 border-zinc-200 rounded-full flex justify-center items-center cursor-pointer duration-200 group hover:shadow-lg">
-            <daisy-svg-icon name="guide" class="size-2"
+            <daisy-svg-icon name="guide" class="size-2" @click="onGuideClick"
                 fillClass="fill-zinc-900 dark:fill-zinc-200 group-hover:fill-main"></daisy-svg-icon>
         </div>
         <daisy-popover class="flex items-center guide-feedback" placement="top-left">
@@ -25,6 +25,25 @@
     </div>
 </template>
 <script setup >
+import { driver } from 'driver.js'
+import steps from './steps'
+import 'driver.js/dist/driver.css'
+
+let driverObj = null
+onMounted(() => {
+    driverObj = driver({
+        allowClose: false,
+        nextBtnText: '下一步',
+        prevBtnText: '上一步',
+        doneBtnText: '完成',
+        closeBtnText: '关闭',
+        steps
+    })
+})
+
+const onGuideClick = () => {
+    driverObj.drive()
+}
 
 </script>
 <style lang="scss" scoped></style>

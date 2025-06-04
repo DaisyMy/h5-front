@@ -2,7 +2,7 @@
   <daisy-popover>
     <template #reference>
       <daisy-svg-icon :name="svgIconName"
-        class=" dark:hover:bg-zinc-900 guide-theme w-4 h-4 p-1 cursor-pointer rounded-sm duration-200 outline-none hover:bg-zinc-100/60"
+        class="guide-theme  dark:hover:bg-zinc-900 guide-theme w-4 h-4 p-1 cursor-pointer rounded-sm duration-200 outline-none hover:bg-zinc-100/60"
         fillClass=" dark:fill-zinc-300 fill-zinc-900"></daisy-svg-icon>
     </template>
     <div class="w-[140px] overflow-hidden">

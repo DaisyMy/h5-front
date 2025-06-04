@@ -1,5 +1,5 @@
 <template>
-  <div class=" w-full">
+  <div class="guide-search  w-full">
     <daisy-search v-model="inputValue" @search="onSearchHandler" @clear="onSearchHandler">
       <template #dropdown>
         <div>

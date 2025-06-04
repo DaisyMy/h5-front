@@ -2,7 +2,7 @@
   <daisy-popover>
     <template #reference>
       <div
-        class=" dark:hover:bg-zinc-900 guide-my relative flex items-center p-0.5 rounded-sm cursor-pointer duration-200 outline-none hover:bg-zinc-100">
+        class="guide-my dark:hover:bg-zinc-900 guide-my relative flex items-center p-0.5 rounded-sm cursor-pointer duration-200 outline-none hover:bg-zinc-100">
         <img class="w-3 h-3 rounded-sm" src="@/assets/logo.png" />
         <daisy-svg-icon class="size-1.5 ml-0.5" name="down-arrow"
           fillClass=" dark:fill-zinc-300 fill-zinc-900"></daisy-svg-icon>
