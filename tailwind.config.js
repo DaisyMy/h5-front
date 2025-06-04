@@ -2,6 +2,7 @@
 
 module.exports = {
   content: ['./index.html', './src/**/*.{vue,js,ts,jsx,tsx}'],
+  plugins: [require('tailwind-scrollbar')],
   darkMode: 'class',
   theme: {
     extend: {
@@ -32,6 +33,9 @@ module.exports = {
         'error-100': '#ED7456',
         'error-200': '#f3471c',
         'error-300': '#ffffff',
+      },
+      variants: {
+        scrollbar: ['dark'],
       },
     },
   },
