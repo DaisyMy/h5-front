@@ -3,7 +3,7 @@
         <div class="relative w-full rounded cursor-zoom-in group" :style="{
             backgroundColor: randomRGB()
         }">
-            <img v-lazy class=" w-full rounded bg-transparent" :src="data.photo" :style="{
+            <img v-lazy ref="imgTarget" class=" w-full rounded bg-transparent" :src="data.photo" :style="{
                 height: (width / data.photoWidth) * data.photoHeight + 'px'
             }">
             <div
@@ -14,7 +14,7 @@
                 <daisy-button class=" absolute bottom-1.5 left-1.5 bg-zinc-100/70" type="info" size="small" icon="download"
                     iconClass="fill-zinc-900 dark:fill-zinc-200" @click.stop="onDownload" />
                 <daisy-button class=" absolute bottom-1.5 right-1.5 bg-zinc-100/70" type="info" size="small" icon="full"
-                    iconClass="fill-zinc-900 dark:fill-zinc-200" />
+                    iconClass="fill-zinc-900 dark:fill-zinc-200" @click="onImgFullScreen" />
             </div>
         </div>
         <p class="text-sm mt-1 font-bold text-zinc-900 dark:text-zinc-300 line-clamp-2 px-1">{{ data.title }}</p>
@@ -27,6 +27,8 @@
 <script setup >
 import { randomRGB } from '@/utils/color'
 import { message } from '@/libs'
+import { useFullscreen } from '@vueuse/core'
+
 const props = defineProps({
     data: {
         type: Object,
@@ -41,4 +43,7 @@ const props = defineProps({
 const onDownload = () => {
     message('success', '图片开始下载')
 }
+
+const imgTarget = ref(null)
+const { enter: onImgFullScreen } = useFullscreen(imgTarget)
 </script>
