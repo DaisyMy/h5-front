@@ -1,12 +1,15 @@
 <template>
   <daisy-popover>
     <template #reference>
-      <div
+      <div v-if="false"
         class="guide-my dark:hover:bg-zinc-900 guide-my relative flex items-center p-0.5 rounded-sm cursor-pointer duration-200 outline-none hover:bg-zinc-100">
         <img class="w-3 h-3 rounded-sm" src="@/assets/logo.png" />
         <daisy-svg-icon class="size-1.5 ml-0.5" name="down-arrow"
           fillClass=" dark:fill-zinc-300 fill-zinc-900"></daisy-svg-icon>
         <daisy-svg-icon class="size-1.5 absolute right-[16px] bottom-0" name="vip"></daisy-svg-icon>
+      </div>
+      <div v-else>
+        <daisy-button class="guide-my" icon="profile" iconColor="#fff" @click="onToLogin"></daisy-button>
       </div>
     </template>
 
@@ -21,6 +24,8 @@
   </daisy-popover>
 </template>
 <script setup >
+import { useRouter } from 'vue-router'
+const router = useRouter()
 const menuList = [
   {
     id: 0,
@@ -41,5 +46,9 @@ const menuList = [
     path: ''
   }
 ]
+
+const onToLogin = () => {
+  router.push('/login')
+}
 </script>
 <style lang="scss" scoped></style>
