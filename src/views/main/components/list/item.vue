@@ -1,5 +1,5 @@
 <template>
-    <div class=" bg-white dark:bg-zinc-900 xl:dark:bg-zinc-800 rounded pb-1">
+    <div class=" bg-white dark:bg-zinc-900 xl:dark:bg-zinc-800 rounded pb-1" @click="onToPinsClick">
         <div class="relative w-full rounded cursor-zoom-in group" :style="{
             backgroundColor: randomRGB()
         }">
@@ -27,7 +27,7 @@
 <script setup >
 import { randomRGB } from '@/utils/color'
 import { message } from '@/libs'
-import { useFullscreen } from '@vueuse/core'
+import { useFullscreen, useElementBounding } from '@vueuse/core'
 
 const props = defineProps({
     data: {
@@ -40,10 +40,30 @@ const props = defineProps({
     }
 })
 
+const emits = defineEmits(['click'])
+const imgTarget = ref(null)
+const {
+    x: imgContainerX,
+    y: imgContainerY,
+    width: imgContainerWidth,
+    height: imgContainerHeight
+} = useElementBounding(imgTarget)
+
+const imgContainerCenter = computed(() => {
+    return {
+        translateX: parseInt(imgContainerX.value + imgContainerWidth.value / 2),
+        translateY: parseInt(imgContainerY.value + imgContainerHeight.value / 2)
+    }
+})
+
 const onDownload = () => {
     message('success', '图片开始下载')
 }
 
-const imgTarget = ref(null)
+
 const { enter: onImgFullScreen } = useFullscreen(imgTarget)
+
+const onToPinsClick = () => {
+    emits('click', { id: props.data.id, location: imgContainerCenter.value })
+}
 </script>

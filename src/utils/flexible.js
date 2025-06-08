@@ -24,7 +24,6 @@ export const useREm = () => {
   document.addEventListener('DOMContentLoaded', () => {
     const html = document.querySelector('html');
     // 屏幕宽度/10 为根元素的基准值
-    console.log(window.innerWidth);
     let fontSize = window.innerWidth / 10;
     fontSize = fontSize > MAX_FONT_SIZE ? MAX_FONT_SIZE : fontSize;
     // 设置根元素的基准值

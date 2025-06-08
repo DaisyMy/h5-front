@@ -39,7 +39,6 @@ const props = defineProps({
 const isVisable = ref(false)
 
 onMounted(() => {
-    console.log(111);
     isVisable.value = true
     setTimeout(() => {
         isVisable.value = false
