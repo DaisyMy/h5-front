@@ -1,6 +1,6 @@
 import axios from 'axios';
 import useUserStore from '@/store/modules/user';
-import { message } from '@/libs';
+import { message as msg } from '@/libs';
 
 const service = axios.create({
   baseURL: import.meta.env.VITE_BASE_API,
@@ -31,7 +31,7 @@ service.interceptors.response.use((rep) => {
     return data;
   } else {
     // TODO: 业务报错
-    message('error', message);
+    msg('error', message);
     return Promise.reject(new Error(message));
   }
 });

@@ -86,7 +86,7 @@ const onLoginHandler = () => {
 }
 
 const onToRegister = () => {
-
+    router.push('/register')
 }
 
 const onCaptchaSuccess = () => {
