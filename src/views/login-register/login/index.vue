@@ -60,6 +60,8 @@ import { LOGIN_TYPE_USERNAME } from '@/constants'
 const userStore = useUserStore()
 const router = useRouter()
 
+const isSliderCaptchaVisible = ref(false)
+
 const loading = ref(false);
 const loginForm = reactive({
     username: '',
@@ -70,7 +72,7 @@ const onLogin = async () => {
     loading.value = true
     try {
         await userStore.login({
-            ...loginForm.value,
+            ...loginForm,
             loginType: LOGIN_TYPE_USERNAME
         })
     } finally {
@@ -87,9 +89,9 @@ const onToRegister = () => {
 
 }
 
-const isSliderCaptchaVisible = ref(false)
 const onCaptchaSuccess = () => {
     isSliderCaptchaVisible.value = false
+    onLogin()
 }
 </script>
 <style lang="scss" scoped></style>

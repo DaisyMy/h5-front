@@ -25,7 +25,7 @@ import '@/vendor/SliderCaptcha/longbow.slidercaptcha.min.js'
 import { getCaptcha } from '@/api/sys'
 
 const emits = defineEmits([EMITS_CLOSE, EMITS_SUCCESS])
-const captcha = null
+let captcha = null
 onMounted(() => {
     captcha = sliderCaptcha({
         id: 'captcha',

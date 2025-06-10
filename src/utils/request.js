@@ -1,8 +1,6 @@
 import axios from 'axios';
 import useUserStore from '@/store/modules/user';
 
-const userStore = useUserStore();
-
 const service = axios.create({
   baseURL: import.meta.env.VITE_BASE_API,
   timeout: 5000,
@@ -10,6 +8,8 @@ const service = axios.create({
 
 service.interceptors.request.use(
   (config) => {
+    return config;
+    const userStore = useUserStore();
     if (userStore.token) {
       config.headers['Authorization'] = `Bearer ${userStore.token}`;
       return config;
