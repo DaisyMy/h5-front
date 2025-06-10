@@ -1,5 +1,6 @@
 import axios from 'axios';
 import useUserStore from '@/store/modules/user';
+import { message } from '@/libs';
 
 const service = axios.create({
   baseURL: import.meta.env.VITE_BASE_API,
@@ -8,14 +9,18 @@ const service = axios.create({
 
 service.interceptors.request.use(
   (config) => {
-    return config;
     const userStore = useUserStore();
     if (userStore.token) {
       config.headers['Authorization'] = `Bearer ${userStore.token}`;
       return config;
     }
+    return config;
   },
   (error) => {
+    const userStore = useUserStore();
+    if (error.response && error.response.data && error.response.data.status === 401) {
+      userStore.loginout();
+    }
     return Promise.reject(error);
   }
 );
@@ -26,6 +31,7 @@ service.interceptors.response.use((rep) => {
     return data;
   } else {
     // TODO: 业务报错
+    message('error', message);
     return Promise.reject(new Error(message));
   }
 });
