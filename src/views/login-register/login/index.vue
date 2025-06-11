@@ -4,7 +4,7 @@
         <header-vue></header-vue>
         <!-- 表单区 -->
         <div
-            class="block px-3 mt-4 dark:bg-zinc-800 xl:bg-white xl:w-[388px] xl:dark:bg-zinc-900 xl:daisy-auto xl:mt-8 xl:py-4 xl:rounded-sm xl:shadow-lg my-auto ">
+            class="block px-3 mt-4 dark:bg-zinc-800 xl:bg-white xl:w-[388px] xl:dark:bg-zinc-900 xl:m-auto xl:mt-8 xl:py-4 xl:rounded-sm xl:shadow-lg my-auto ">
             <h3 class="mb-2 font-semibold text-base text-main dark:text-zinc-300 hidden xl:block">
                 账号登录
             </h3>

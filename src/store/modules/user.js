@@ -41,6 +41,10 @@ const userStore = defineStore('user', {
         password: password ? md5(password) : '',
       });
     },
+
+    setUserInfo(data) {
+      this.userInfo = data;
+    },
   },
 });
 
