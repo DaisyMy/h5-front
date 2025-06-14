@@ -6,7 +6,7 @@
                 <daisy-svg-icon name="back" class="size-2" fillClass="fill-zinc-900 dark:fill-zinc-200"></daisy-svg-icon>
             </slot>
         </div>
-        <div class="h-full flex items-center justify-center m-auto font-bold text-zinc-900 dark:text-zinc-200">
+        <div class="h-full flex items-center justify-center m-auto font-bold text-base  text-zinc-900 dark:text-zinc-200">
             <slot></slot>
         </div>
         <div class="h-full w-5 absolute right-0 flex items-center justify-center" @click="onClickRight">
