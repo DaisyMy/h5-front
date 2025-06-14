@@ -72,6 +72,15 @@
                 </daisy-button>
             </div>
         </div>
+
+        <!-- PC 端 -->
+        <daisy-dialog v-if="!isMobileTerminal" v-model="isDialogVisible">
+            <change-avatar-vue :blob="currentBolb" @close="isDialogVisible = false"></change-avatar-vue>
+        </daisy-dialog>
+        <!-- 移动端 -->
+        <daisy-popup v-else :class="{ 'h-screen': isDialogVisible }" v-model="isDialogVisible">
+            <change-avatar-vue :blob="currentBolb" @close="isDialogVisible = false"></change-avatar-vue>
+        </daisy-popup>
     </div>
 </template>
 
@@ -88,6 +97,7 @@ import { message, confirm } from '@/libs'
 import { useRouter } from 'vue-router'
 import useUserStore from '@/store/modules/user'
 import useAppStore from '@/store/modules/app'
+import changeAvatarVue from './components/change-avatar.vue'
 
 const userStore = useUserStore()
 const appStore = useAppStore()
@@ -109,14 +119,14 @@ const onAvatarClick = () => {
  * 头像选择之后的回调
  */
 const onSelectImgHandler = () => {
-    // // 获取选中的文件
-    // const imgFile = inputFileTarget.value.files[0]
-    // // 生成 blob 对象
-    // const blob = URL.createObjectURL(imgFile)
-    // // 获取选中的图片
-    // currentBolb.value = blob
-    // // 展示 Dialog
-    // isDialogVisible.value = true
+    // 获取选中的文件
+    const imgFile = inputFileTarget.value.files[0]
+    // 生成 blob 对象
+    const blob = URL.createObjectURL(imgFile)
+    // 获取选中的图片
+    currentBolb.value = blob
+    // 展示 Dialog
+    isDialogVisible.value = true
 }
 
 /**

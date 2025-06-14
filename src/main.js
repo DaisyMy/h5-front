@@ -11,6 +11,7 @@ import mLibs from './libs';
 import mDirective from './directives';
 import { useREm } from '@/utils/flexible.js';
 import useTheme from '@/utils/theme.js';
+import './permission'
 
 const app = createApp(App);
 
