@@ -15,7 +15,7 @@ import './permission'
 
 const app = createApp(App);
 
-app.use(store).use(router).use(mLibs).use(mDirective);
+app.use(router).use(store).use(mLibs).use(mDirective);
 
 app.mount('#app');
 
