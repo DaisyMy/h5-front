@@ -2,8 +2,8 @@ import router from '@/router'
 import userUserStore from '@/store/modules/user';
 import { message } from '@/libs';
 
-router.beforeEach((to, from) => {
-  if (!to.meta.user) {
+router.beforeEach((to) => {
+  if (!to.meta?.user) {
     return;
   }
   if (userUserStore().token) {

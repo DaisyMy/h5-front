@@ -15,6 +15,7 @@
                 <p class=" mt-1 text-sm text-zinc-500"> {{ currentPayData.desc }}</p>
             </div>
         </div>
+        <daisy-count-down :time="1000 * 60"></daisy-count-down>
     </div>
 </template>
 <script>
